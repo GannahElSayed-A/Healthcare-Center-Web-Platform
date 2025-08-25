@@ -1,0 +1,135 @@
+﻿@page
+@model GUI.Pages.FeedbacksModel
+@{
+    ViewData["Title"] = "Feedbacks";
+}
+
+@if (Model.UserType == "Admin")
+{
+    <form method="post">
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="UsersDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                Pick a Patient
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="UsersDropdown">
+                @for (int i = 0; i < Model.AllPatient.Rows.Count; i++)
+                {
+                    <li>
+                        <button class="dropdown-item" type="submit" name="Choose a day" value=@Model.AllPatient.Rows[i][0]>
+                            @Model.AllPatient.Rows[i][0]
+                        </button>
+                    </li>
+                }
+            </ul>
+        </div>
+    </form>
+}
+<body style=" background: white">
+    <div class="container">
+
+        <div class="row gx-4">
+
+            <div class="col-sm-12">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title text-center">Feedbacks</h5>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="container py-9 py-lg-11 position-relative z-index-1">
+                            <div class="row">
+                                <div class="col-lg-5 mb-5 mb-lg-0">
+
+                                    <div class="nav nav-pills flex-column aos-init aos-animate" id="myTab" role="tablist" data-aos="fade-up">
+                                        @for (int i = 0; i < Model.Doc.Rows.Count; i++)
+                                        {
+                                            @if (i == 0)
+                                            {
+                                                <button class="nav-link px-4 text-start mb-3 btn-danger active " id="d1-tab" data-bs-toggle="tab" data-bs-target="#day1" type="button" role="tab" aria-controls="day1" aria-selected="true" style=" color: black; font-size: 22px;font-weight: 400; line-height: 28px; word-wrap: break-word">
+                                                    <span class="d-block fs-5 fw-bold">@Model.Fd.Rows[i][5] @Model.Fd.Rows[i][6]</span>
+
+                                                </button>
+
+                                            }
+                                            else
+                                            {
+                                                <button class="nav-link px-4 text-start" id="d2-tab" data-bs-toggle="tab" data-bs-target="#day2" type="button" role="tab" aria-controls="day2" aria-selected="false" tabindex="-1" style=" color: black; font-size: 22px; font-weight: 400; line-height: 28px; word-wrap: break-word">
+                                                    <span class="d-block fs-5 fw-bold">@Model.Fd.Rows[i][5] @Model.Fd.Rows[i][6]</span>
+
+                                                </button>
+                                            }
+
+                                        }
+
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-7 col-xl-6">
+                                    <div data-aos="fade-up" class="tab-content aos-init aos-animate" id="myTabContent">
+                                        @* Each doctor *@
+                                        @for (int d = 0; d < Model.Doc.Rows.Count; d++)
+                                        {
+                                            @for (int i = 0; i < Model.Fd.Rows.Count; i++)
+                                            {
+                                                @if (Model.Fd.Rows[i][7].ToString().Contains(Model.Doc.Rows[d][0].ToString()))
+                                                {
+
+                                                    @if (i == 0)
+                                                    {
+                                                        <div class="tab-pane fade active show" id="day1" role="tabpanel" aria-labelledby="d1-tab">
+                                                            <ul class="pt-4 list-unstyled mb-0">
+                                                                <li class="d-flex flex-column flex-md-row py-4">
+                                                                    <span class="flex-shrink-0 width-13x me-md-4 d-block mb-3 mb-md-0 small text-muted">
+                                                                        @Model.Fd.Rows[i][0]:00
+                                                                    </span>
+                                                                    <div class="flex-grow-1 ps-4 border-start border-3">
+                                                                        <h4>@Model.Fd.Rows[i][1], @Model.Fd.Rows[i][3] @Model.Fd.Rows[i][1], 2024</h4>
+
+                                                                        <p class="mb-0">
+                                                                            @Model.Fd.Rows[i][4]
+                                                                        </p>
+                                                                    </div>
+                                                                </li>
+
+                                                            </ul>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="tab-pane fade active show" id="day1" role="tabpanel" aria-labelledby="d1-tab">
+                                                            <ul class="pt-4 list-unstyled mb-0">
+                                                                <li class="d-flex flex-column flex-md-row py-4">
+                                                                    <span class="flex-shrink-0 width-13x me-md-4 d-block mb-3 mb-md-0 small text-muted">
+                                                                        @Model.Fd.Rows[i][0]:00
+                                                                    </span>
+                                                                    <div class="flex-grow-1 ps-4 border-start border-3">
+                                                                        <h4>@Model.Fd.Rows[i][1], @Model.Fd.Rows[i][3] @Model.Fd.Rows[i][1], 2024</h4>
+                                                                        <p class="mb-0">
+                                                                            @Model.Fd.Rows[i][4]
+                                                                        </p>
+                                                                    </div>
+                                                                </li>
+
+                                                            </ul>
+                                                        </div>
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                            <form method="post" asp-page-handler="add">
+                                <button class="btn btn-light">Modify</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>

@@ -1,0 +1,451 @@
+﻿@page
+@model GUI.Pages.ScheduleModel
+@{
+
+    ViewData["Title"] = "Schedule";
+
+}
+
+
+@if (Model.UserType == "Admin")
+
+{
+
+    <h4 class="display-18 display-md-16 display-lg-14 mb-0 text-light">Pick A Specific date</h4>
+    <form>
+
+        <div class="form-group">
+            <label> Date</label>
+            <input type="date" class="form-control" asp-for="@Model.sdate">
+        </div>
+        <br />
+
+        <span>
+            <input type="submit" value="Confirm" />
+        </span>
+
+    </form>
+
+
+<div class="container">
+        <div class="w-95 w-md-75 w-lg-60 w-xl-55 mx-auto mb-6 text-center">
+
+            <h2 class="display-18 display-md-16 display-lg-14 mb-0 text-light">Today's Schedule </h2>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="schedule-table">
+                    <table class="table bg-white">
+                        <thead>
+                            <tr>
+                                <th>Rooms</th>
+                                <th>8am -10am</th>
+                                <th>10am - 12 am</th>
+                                <th>12pm - 2 pm</th>
+                                <th class="last">2pm - 4pm</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int r = 0; r < Model.Rooms.Rows.Count; r++)
+                            {
+                                <tr>
+                                    <td class="day">Room @Model.Rooms.Rows[r][0]</td>
+                                   
+                                        @for (int i = 0; i < Model.Sessions.Rows.Count; i++)
+                                        {
+                                            @for (int t = 0; t < 4; t++)
+                                            {
+                                                @if (Model.Sessions.Rows[i][6].ToString().Contains(Model.Rooms.Rows[r][0].ToString()))
+                                                {
+                                                    @if (t == 0)
+                                                    {
+                                                        @if (Model.Sessions.Rows[i][0].ToString() == "8")
+                                                        {
+                                                            <td class="active">
+                                                                <h4>Session Type</h4>
+                                                                <form method="post">
+                                                                    <p>@Model.Sessions.Rows[i][7] @Model.Sessions.Rows[i][8]</p>
+                                                                    <span>Dr. @Model.Sessions.Rows[i][4] @Model.Sessions.Rows[i][5]</span>
+                                                                    <div class="hover">
+
+                                                                        <p>@Model.Sessions.Rows[i][9]</p>
+
+                                                                        <span>
+                                                                            <input type="submit" value="Edit" asp-page-handler="Edit" asp-route-Muser="@Model.Sessions.Rows[i][10] " asp-route-Date="@Model.Sessions.Rows[i][11]" />
+                                                                        </span>
+
+                                                                        <span>
+
+                                                                            <input type="submit" value="Cancel" asp-page-handler="Delete" asp-route-Muser="@Model.Sessions.Rows[i][10] " asp-route-Date="@Model.Sessions.Rows[i][11]" />
+                                                                        </span>
+
+                                                                    </div>
+                                                                </form>
+                                                            </td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td class="active">
+
+                                                                <Spen>No Session</Spen>
+                                                                <p>-----</p>
+
+                                                            </td>
+                                                        }
+                                                    }
+                                                    else if (t == 1)
+                                                    {
+                                                        if (Model.Sessions.Rows[i][0].ToString() == "10")
+                                                        {
+                                                            <td class="active">
+                                                                <h4>Session Type</h4>
+                                                                <form method="post">
+                                                                    <p>@Model.Sessions.Rows[i][7] @Model.Sessions.Rows[i][8]</p>
+                                                                    <span>Dr. @Model.Sessions.Rows[i][4] @Model.Sessions.Rows[i][5]</span>
+                                                                    <div class="hover">
+
+                                                                        <p>@Model.Sessions.Rows[i][9]</p>
+
+                                                                        <span>
+                                                                            <input type="submit" value="Edit" asp-page-handler="Edit" asp-route-Muser="@Model.Sessions.Rows[i][10] " asp-route-Date="@Model.Sessions.Rows[i][11]" />
+                                                                        </span>
+
+                                                                        <span>
+
+                                                                            <input type="submit" value="Cancel" asp-page-handler="Delete" asp-route-Muser="@Model.Sessions.Rows[i][10] " asp-route-Date="@Model.Sessions.Rows[i][11]" />
+                                                                        </span>
+
+                                                                    </div>
+                                                                </form>
+                                                            </td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td class="active">
+
+                                                                <Spen>No Session</Spen>
+                                                                <p>-----</p>
+
+                                                            </td>
+                                                        }
+
+                                                    }
+                                                    else if (t == 2)
+                                                    {
+                                                        if (Model.Sessions.Rows[i][0].ToString() == "12")
+                                                        {
+                                                            <td class="active">
+                                                                <h4>Session Type</h4>
+                                                                <form method="post">
+                                                                    <p>@Model.Sessions.Rows[i][7] @Model.Sessions.Rows[i][8]</p>
+                                                                    <span>Dr. @Model.Sessions.Rows[i][4] @Model.Sessions.Rows[i][5]</span>
+                                                                    <div class="hover">
+
+                                                                        <p>@Model.Sessions.Rows[i][9]</p>
+
+                                                                        <span>
+                                                                            <input type="submit" value="Edit" asp-page-handler="Edit" asp-route-Muser="@Model.Sessions.Rows[i][10] " asp-route-Date="@Model.Sessions.Rows[i][11]" />
+                                                                        </span>
+
+                                                                        <span>
+
+                                                                            <input type="submit" value="Cancel" asp-page-handler="Delete" asp-route-Muser="@Model.Sessions.Rows[i][10] " asp-route-Date="@Model.Sessions.Rows[i][11]" />
+                                                                        </span>
+
+                                                                    </div>
+                                                                </form>
+                                                            </td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td class="active">
+
+                                                                <Spen>No Session</Spen>
+                                                                <p>-----</p>
+
+                                                            </td>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        if (Model.Sessions.Rows[i][0].ToString() == "2")
+                                                        {
+                                                            <td class="active">
+                                                                <h4>Session Type</h4>
+                                                                <form method="post">
+                                                                    <p>@Model.Sessions.Rows[i][7] @Model.Sessions.Rows[i][8]</p>
+                                                                    <span>Dr. @Model.Sessions.Rows[i][4] @Model.Sessions.Rows[i][5]</span>
+                                                                    <div class="hover">
+
+                                                                        <p>@Model.Sessions.Rows[i][9]</p>
+
+                                                                        <span>
+                                                                            <input type="submit" value="Edit" asp-page-handler="Edit" asp-route-Muser="@Model.Sessions.Rows[i][10] " asp-route-Date="@Model.Sessions.Rows[i][11]" />
+                                                                        </span>
+
+                                                                        <span>
+
+                                                                            <input type="submit" value="Cancel" asp-page-handler="Delete" asp-route-Muser="@Model.Sessions.Rows[i][10] " asp-route-Date="@Model.Sessions.Rows[i][11]" />
+                                                                        </span>
+
+                                                                    </div>
+                                                                </form>
+                                                            </td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td class="active">
+
+                                                                <Spen>No Session</Spen>
+                                                                <p>-----</p>
+
+                                                            </td>
+                                                        }
+                                                    }
+                                                }
+                                        }
+                                    }
+
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form method="post">
+
+        <button class="btn btn-light" asp-page-handler="add">Add</button>
+    </form>
+}
+
+else if (Model.UserType == "Member")
+{
+
+    <div class="container">
+
+        <div class="row gx-4">
+
+            <div class="col-sm-12">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title text-center">My Schedule</h5>
+                    </div>
+                    <div class="card-body">
+
+                        <!-- Tabs container starts -->
+                        <div class="custom-tabs-container">
+                            <ul class="nav nav-tabs justify-content-center" id="customTab4" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link active" id="tab-oneA" data-bs-toggle="tab" href="#oneA" role="tab" aria-controls="oneA" aria-selected="true" style="color: #1B1B1B; font-size: 16px;text-transform: uppercase; line-height: 20px; letter-spacing: 0.32px; word-wrap: break-word">Sunday</a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link" id="tab-twoA" data-bs-toggle="tab" href="#twoA" role="tab" aria-controls="twoA" aria-selected="false" tabindex="-1" style="color: #1B1B1B; font-size: 16px;  font-weight: 400; text-transform: uppercase; line-height: 20px; letter-spacing: 0.32px; word-wrap: break-word">Monday</a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link" id="tab-threeA" data-bs-toggle="tab" href="#threeA" role="tab" aria-controls="threeA" aria-selected="false" tabindex="-1" style="color: #1B1B1B; font-size: 16px; font-weight: 400; text-transform: uppercase; line-height: 20px; letter-spacing: 0.32px; word-wrap: break-word">Tuesday</a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link" id="tab-fourA" data-bs-toggle="tab" href="#fourA" role="tab" aria-controls="fourA" aria-selected="false" tabindex="-1" style="color: #1B1B1B; font-size: 16px;  text-transform: uppercase; line-height: 20px; letter-spacing: 0.32px; word-wrap: break-word">Wednesday</a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link" id="tab-fiveA" data-bs-toggle="tab" href="#fiveA" role="tab" aria-controls="fiveA" aria-selected="false" tabindex="-1" style="color: #1B1B1B; font-size: 16px;  font-weight: 400; text-transform: uppercase; line-height: 20px; letter-spacing: 0.32px; word-wrap: break-word">Thursday</a>
+                                </li>
+
+                            </ul>
+                            <div class="tab-content" id="customTabContent">
+                                @* Sunday tab*@
+                                <div class="tab-pane fade show active" id="oneA" role="tabpanel" aria-labelledby="tab-oneA">
+
+                                    <!-- Row starts -->
+                                    <div class="row gx-4 justify-content-center">
+
+                                        @for (int i = 0; i < Model.SUN; i++)
+                                        {
+
+                                            <div class="col-sm-3 col-12">
+
+                                                <div class=" card-body p-3 rounded-2 border rounded-2 ">
+
+                                                    <h6 class="card-title text-center" style="color:black; font-size: 16px;  font-weight: 400; word-wrap: break-word">SessionType</h6>
+                                                    <ul class="list-group border border-dark">
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center border border-dark">
+                                                            @Model.Sessions.Rows[i][4] @Model.Sessions.Rows[i][5]
+
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center border border-dark">
+                                                            @Model.Sessions.Rows[i][1]:00
+
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center border border-dark">
+                                                            @Model.Sessions.Rows[i][6]
+
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        }
+
+                                    </div>
+                                    <!-- Row ends -->
+                                </div>
+                                @* Monday tab*@
+                                <div class="tab-pane fade" id="twoA" role="tabpanel" aria-labelledby="tab-twoA">
+                                    <!-- Row starts -->
+                                    <div class="row gx-4 justify-content-center">
+
+                                        @for (int i = 0; i < Model.MON; i++)
+                                        {
+
+                                            <div class="col-sm-3 col-12">
+
+                                                <div class=" card-body p-3 rounded-2 border rounded-2 ">
+
+                                                    <h6 class="card-title text-center" style="color:black; font-size: 16px;  font-weight: 400; word-wrap: break-word">SessionType</h6>
+                                                    <ul class="list-group border border-dark">
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center border border-dark">
+                                                            @Model.Sessions.Rows[i][4] @Model.Sessions.Rows[i][5]
+
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center border border-dark">
+                                                            @Model.Sessions.Rows[i][1]:00
+
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center border border-dark">
+                                                            @Model.Sessions.Rows[i][6]
+
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        }
+
+                                    </div>
+                                    <!-- Row ends -->
+                                </div>
+                                @* Tueday tab*@
+                                <div class="tab-pane fade" id="threeA" role="tabpanel" aria-labelledby="tab-threeA">
+                                    <!-- Row starts -->
+                                    <div class="row gx-4 justify-content-center">
+
+                                        @for (int i = 0; i < Model.TUE; i++)
+                                        {
+
+                                            <div class="col-sm-3 col-12">
+
+                                                <div class=" card-body p-3 rounded-2 border rounded-2 ">
+
+                                                    <h6 class="card-title text-center" style="color:black; font-size: 16px;  font-weight: 400; word-wrap: break-word">SessionType</h6>
+                                                    <ul class="list-group border border-dark">
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center border border-dark">
+                                                            @Model.Sessions.Rows[i][4] @Model.Sessions.Rows[i][5]
+
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center border border-dark">
+                                                            @Model.Sessions.Rows[i][1]:00
+
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center border border-dark">
+                                                            @Model.Sessions.Rows[i][6]
+
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        }
+
+                                    </div>
+
+                                    <!-- Row ends -->
+                                </div>
+                                @* Wednesday tab*@
+                                <div class="tab-pane fade" id="fourA" role="tabpanel" aria-labelledby="tab-fourA">
+                                    <!-- Row starts -->
+                                    <div class="row gx-4 justify-content-center">
+
+                                        @for (int i = 0; i < Model.WED; i++)
+                                        {
+
+                                            <div class="col-sm-3 col-12">
+
+                                                <div class=" card-body p-3 rounded-2 border rounded-2 ">
+
+                                                    <h6 class="card-title text-center" style="color:black; font-size: 16px;  font-weight: 400; word-wrap: break-word">SessionType</h6>
+                                                    <ul class="list-group border border-dark">
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center border border-dark">
+                                                            @Model.Sessions.Rows[i][4] @Model.Sessions.Rows[i][5]
+
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center border border-dark">
+                                                            @Model.Sessions.Rows[i][1]:00
+
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center border border-dark">
+                                                            @Model.Sessions.Rows[i][6]
+
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        }
+                                    </div>
+                                    <!-- Row ends -->
+                                </div>
+                                @* Thurssday tab*@
+
+                                <div class="tab-pane fade" id="fiveA" role="tabpanel" aria-labelledby="tab-fiveA">
+                                    <!-- Row starts -->
+                                    <div class="row gx-4 justify-content-center">
+
+                                        @for (int i = 0; i < Model.THURS; i++)
+                                        {
+
+                                            <div class="col-sm-3 col-12">
+
+                                                <div class=" card-body p-3 rounded-2 border rounded-2 ">
+
+                                                    <h6 class="card-title text-center" style="color:black; font-size: 16px;  font-weight: 400; word-wrap: break-word">SessionType</h6>
+                                                    <ul class="list-group border border-dark">
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center border border-dark">
+                                                            @Model.Sessions.Rows[i][4] @Model.Sessions.Rows[i][5]
+
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center border border-dark">
+                                                            @Model.Sessions.Rows[i][1]:00
+
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center border border-dark">
+                                                            @Model.Sessions.Rows[i][6]
+
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        }
+                                    </div>
+                                    <!-- Row ends -->
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+}
+

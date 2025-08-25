@@ -1,0 +1,75 @@
+﻿@page
+@model GUI.Pages.AddUserModel
+@{
+    
+}
+<body>
+
+    <h3>Add member</h3>
+    <form clas="form" method="post" asp-page-Handler ="add_member">
+        <label for user_name>User name</label>
+        <input type="text"><br>
+        <label for F_name>First name</label>
+        <input type="text"><br>
+        <label for S_name>Second name</label>
+        <input type="text"><br>
+        <label for L_name>Last name</label>
+        <input type="text"><br>
+        <label for password>password</label>
+        <input type="password"><br>
+        <label for e-mail>e-mail</label>
+        <input type="text"><br>
+        <label for nationality>Nationality</label>
+        <input type="text"><br>
+        <label for boosters>Bossters</label>
+        <input type="text"><br>
+        <label for birth_date>Birth date</label>
+        <input type="text"><br>
+        <label for st_date>Start date</label>
+        <input type="text"><br>
+        <label for Sex>Sex</label>
+        <input type="text"><br>
+        <label Time Age>Time Age</label>
+        <input type="text"><br>
+        <label for Arrangement>Arrangement between brothers</label>
+        <input type="text"><br>
+        <label for un>Address place</label>
+        <input type="text"><br>
+        <label for livin_with>Living with </label>
+        <input type="text"><br>
+        <label for Fin_hist>Total Financial History</label>
+        <input type="text"><br>
+        <button>Confirm</button>
+    </form>
+
+    <h3>Add Doctor</h3>
+    <form>
+        <label for un>User name</label>
+        <input type="text"><br>
+        <label for F_name>First name</label>
+        <input type="text"><br>
+        <label for S_name>Second name</label>
+        <input type="text"><br>
+        <label for L_name>Last name</label>
+        <input type="text"><br>
+        <label for password>password</label>
+        <input type="password"><br>
+        <label for e-mail>e-mail</label>
+        <input type="text"><br>
+        <label for Phone_number>Phone number</label>
+        <input type="text"><br>
+        <label for department_name>Department name</label>
+        <input type="text"><br>
+        <button>Confirm</button>
+    </form>
+
+    <h3>Remove User</h3>
+    <form method="post" asp-page-Handler ="remove">
+        <label for un>User name</label>
+        <input type="text">
+        <button>Confirm</button>
+    </form>
+    <br>
+
+    <form method="post"><button>Return to management page </button></form>
+</body>

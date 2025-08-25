@@ -1,0 +1,60 @@
+﻿@page
+@model GUI.Pages.TransactionPageModel
+@{
+    Layout = "_Layout";  // Ensure the layout is correctly applied here
+    var transactions = Model.Transactions;
+}
+<body>
+    <div class="transaction-container">
+        <h1>Your Transaction History</h1>
+
+        @if (transactions != null && transactions.Count > 0)
+        {
+            <table>
+                <thead>
+                    <tr>
+
+                        <th>Transaction ID</th>
+                        @if (Model.UserType == "Admin")
+                        {
+                            <th>User Name</th>
+                        }
+                        <th>Date</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var transaction in transactions)
+                    {
+                        <tr>
+                            <form method="post">
+                            <td>@transaction.TransactionId</td>
+                                @if (Model.UserType == "Admin")
+                                {
+                                <td>@transaction.username</td>
+                                }
+                            <td>@transaction.Date</td>
+                            <td>@transaction.Amount</td>
+                                @if (Model.UserType == "Admin")
+                                {
+                                <td><input type="submit" value="edit" asp-page-handler="Edit" asp-route-TransID="@transaction.TransactionId" /></td>
+                                <td><input type="submit" value="Delete" asp-page-handler="Delete" asp-route-TransID="@transaction.TransactionId" /></td>
+                                }
+                            </form>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p class="no-transactions">You haven't made any transactions yet.</p>
+        }
+    </div>
+    @if (@Model.UserType == "Admin")
+    {
+        <form method="post" asp-page-handler="ADD">
+            <input type="submit" value="Add Transaction" />
+        </form>
+    }
+</body>

@@ -1,0 +1,71 @@
+﻿@page
+@model GUI.Pages.AddSessionModel
+@{
+}
+<head>
+    <meta charset="UTF-8">
+
+    <title></title>
+    <link href='http://fonts.googleapis.com/css?family=Questrial|Droid+Sans|Alice' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row text-center">
+            <div></div>
+
+            <div id="content">
+                <h1> Add Session </h1>
+
+                <form method="post" role="form">
+
+                    <div class="form-group">
+                        <label> Doctor </label>
+                        <input type="text" class="form-control" placeholder="Doctor's Name" asp-for="@Model.S.Dname">
+                    </div>
+                    <div class="form-group">
+                        <label> Patient  </label>
+                        <input type="text" class="form-control" placeholder="Patient's Name" asp-for="@Model.S.Uname">
+                    </div>
+
+                    <div class="form-group">
+
+                        <label> Session Date <span>*</span></label>
+                        <input type="datetime-local" class="form-control" placeholder="when was it?" asp-for="@Model.S.sdate">
+
+                    </div>
+                    @* <div class="form-group">
+
+                            <label> Session Date <span>*</span></label>
+                            <input type="time" class="form-control" placeholder="when was it?" asp-for="@Model.S.Stime">
+
+                        </div> *@
+                    <div class="form-group">
+                        <label> Session Room </label>
+                        <input type="text" class="form-control" placeholder="Which room" asp-for="@Model.S.Place">
+                    </div>
+                    <div class="form-group">
+                        <label> Session Price <span>*</span></label>
+                        <input type="text" class="form-control" placeholder="How much?" asp-for="@Model.S.price">
+                    </div>
+                    <br />
+                    <span>
+                        <input type="submit" value="Add" />
+                        >
+                    </span>
+
+                </form>
+
+
+
+
+
+
+            </div>
+        </div>
+
+    </div>
+</body>
+
+
+@* asp-route-uname="@Model.Uname" asp-route-sdate="@Model.Sdate" asp-route-price="@Model.S.price" asp-route-place="@Model.S.Place" *@

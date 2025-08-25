@@ -1,0 +1,14 @@
+﻿@page
+@model GUI.Pages.EditTransactionModel
+@{
+}
+<p>Add Transaction page</p>
+<p>@Model.TransID</p>
+<form method="post">
+	<label>Transaction Date and Time</label>
+	<input type="datetime" asp-for="@Model.trans.Date" /><br>
+	<label>Amount</label>
+	<input type="text" asp-for="@Model.trans.Amount" /><br>
+	<input type="submit" value="Confirm" />
+
+</form>

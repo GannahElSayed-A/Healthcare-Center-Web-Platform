@@ -1,0 +1,218 @@
+﻿@page
+@model MainModel
+@{
+    ViewData["Title"] = "@";
+}
+
+@if (Model.username == 1)
+{
+    <div class="text-center">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                background-color: #005f73;
+                color: #ffffff;
+                line-height: 1.6;
+            }
+
+            .header {
+                padding: 20px;
+                text-align: center;
+                background-color: #004049;
+                color: white;
+                font-size: 1.5em;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .profile {
+                text-align: right;
+                margin-bottom: 20px;
+                font-size: 1.2em;
+            }
+
+            .card {
+                background-color: white;
+                border-radius: 8px;
+                padding: 20px;
+                margin-bottom: 20px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                position: relative;
+            }
+
+                .card h3 {
+                    margin-bottom: 15px;
+                    color: #005f73;
+                }
+
+            .row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+                padding: 10px 0;
+                position: relative;
+                background-color: transparent;
+            }
+
+                .row div {
+                    flex: 1;
+                    text-align: center;
+                    padding: 15px;
+                    margin: 0 5px;
+                    border-radius: 10px;
+                    color: #005f73;
+                    font-weight: bold;
+                    background-color: lightcyan;
+                    position: relative;
+                    z-index: 1;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                }
+
+                    .row div:hover {
+                        transform: scale(1.05);
+                        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+                    }
+
+                .row::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -10px;
+                    right: -10px;
+                    bottom: 0;
+                    background-color: white;
+                    z-index: 0;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                }
+
+            .logout-btn {
+                display: inline-block;
+                text-align: center;
+                text-decoration: none;
+                color: white;
+                background-color: #005f73;
+                padding: 12px 24px;
+                border-radius: 8px;
+                font-weight: bold;
+                transition: background-color 0.3s ease;
+            }
+
+                .logout-btn:hover {
+                    background-color: #ff595e;
+                }
+        </style>
+        <div class="header">
+            My Account
+        </div>
+
+        <div class="container">
+            <!-- Profile Section -->
+            <div class="profile">
+                <p><strong>Name:</strong> @Model.Name</p>
+                <p><strong>Nationality:</strong> @Model.Nationality</p>
+            </div>
+
+            <!-- History Section -->
+            <div class="card">
+                <h3>History</h3>
+                @foreach (var history in Model.history)
+                {
+                    <div class="row">
+                        <div>No: @history.No</div>
+                        <div>Type: @history.Type</div>
+                        <div>@history.Issue</div>
+                    </div>
+                }
+            </div>
+
+            <!-- Physical Problems Section -->
+            <div class="card">
+                <h3>Physical Problems</h3>
+                @foreach (var problem in Model.PhysicalProblems)
+                {
+                    <div class="row">
+                        <div>No: @problem.No</div>
+                        <div>Problem: @problem.problem</div>
+                        <div>Start Date: @problem.StartDate</div>
+                    </div>
+                }
+            </div>
+
+            <!-- Behavior Problems Section -->
+            <div class="card">
+                <h3>Behavior Problems</h3>
+                @foreach (var behavior in Model.BehaviorProblems)
+                {
+                    <div class="row">
+                        <div>No: @behavior.No</div>
+                        <div>Problem: @behavior.problem</div>
+                        <div>Start Date: @behavior.StartDate</div>
+                    </div>
+                }
+            </div>
+
+            <!-- Logout Button -->
+            <div style="text-align: center; margin-top: 20px;">
+                <a class="logout-btn" href="#">Log Out</a>
+            </div>
+        </div>
+    </div>
+}
+
+else
+{
+    <div class="container">
+
+        <h2>Management</h2>
+
+
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search...">
+            <span class="search-icon">&#128269;</span>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>..</th>
+                    <th>Email</th>
+                    <th>...</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td> ...</td>
+                    <td>...</td>
+                    <td>john.doe@example.com</td>
+                    <td>...</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td> ....</td>
+                    <td>...</td>
+                    <td>jane.smith@example.com</td>
+                    <td>...</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>....</td>
+                    <td>...</td>
+                    <td>bob.johnson@example.com</td>
+                    <td>....</td>
+                </tr>
+            </tbody>
+        </table>
+        <form method="Page">
+            <form method="post"><button>Manage User </button></form>
+        </form>
+
+    </div>
+}
